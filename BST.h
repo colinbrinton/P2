@@ -8,6 +8,7 @@
 using namespace std;
 
 const int ZERO = 0;
+const int ONE = 1;
 
 // BST template
 template <typename T>
@@ -31,6 +32,8 @@ private:
    void displayInOrder(BSTNode *) const;
    void displayPreOrder(BSTNode *) const;
    void displayPostOrder(BSTNode *) const;
+   bool isEmpty(BSTNode *) const;
+   int nodes(BSTNode *) const;
    
 public:
    // Constructor
@@ -42,15 +45,15 @@ public:
       { destroySubTree(root); }
       
    // Binary tree operations
-   bool empty();
    void insertNode(T);
    bool searchNode(T);
    void remove(T);
-   int numNodes();
+   int numNodes() const;
    int numLeafNodes();
    int getHeight();
    int level(T);
    bool displayAncestors(T);
+   bool empty() const;
    
    void displayInOrder() const
       {  displayInOrder(root); }
@@ -251,15 +254,56 @@ void BST<T>::displayPostOrder(BSTNode *nodePtr) const
 //TODO
 
 template <typename T>
-bool BST<T>::empty()
+bool BST<T>::empty()const
 {
-  return false;
+  return isEmpty(root);
 }
 
 template <typename T>
-int BST<T>::numNodes()
+bool BST<T>::isEmpty(BSTNode *nodePtr) const
 {
-  return ZERO;
+  if (nodePtr == nullptr)
+	return true;
+  else
+	return false;
+}
+
+template<typename T>
+int BST<T>::numNodes() const
+{
+  return nodes(root);
+}
+
+template <typename T>
+int BST<T>::nodes(BSTNode *nodePtr ) const
+{
+  // int count = ZERO;
+  
+  if (nodePtr == nullptr)
+  	return ZERO;
+  return (ONE + nodes(nodePtr->left) + nodes(nodePtr->right));
+  /*
+  ++count;
+  while(nodePtr != nullptr)
+	{
+	 nodePtr = nodePtr->left;
+	  ++count;
+	}
+  while(nodePtr != nullptr)
+  {
+	nodePtr = nodePtr->right;
+	++count;
+  }
+
+  return count;
+// if ( nodePtr != nullptr)
+//	{
+//	  nodes(nodePtr->left);
+//	  nodes(nodePtr->right);
+//	  return count + 1;
+//	}
+//return count;*/
+  
 }
 
 template <typename T>

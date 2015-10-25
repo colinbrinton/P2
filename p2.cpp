@@ -85,7 +85,16 @@ int main()
 	cout << "Tree is empty." << endl;
   if(!intBST.empty())
 	cout << "Tree is not empty." << endl;
+  cout << "Initializing empty tree" << endl;
+  BST<int> empty;
+  cout << "Calling 'empty()'" << endl;
+  if(empty.empty())
+	cout << "Tree is empty." << endl;
+  if(!empty.empty())
+	cout << "Tree is not empty." << endl;
   cout << endl;
+
+  
 
   //(Not currently implemented, test result = false)
   //Tree is not empty.
