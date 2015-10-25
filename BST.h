@@ -39,6 +39,8 @@ private:
    int height(BSTNode *) const;
    int getLevel(BSTNode *, T, int) const;
    bool ancestors(BSTNode *, T) const;
+   int width(BSTNode *, int) const;
+   int maxWidth(BSTNode *) const;
    
 public:
    // Constructor
@@ -59,6 +61,7 @@ public:
    int level(T) const ;
    bool displayAncestors(T) const;
    bool empty() const;
+   int getWidth() const;
    
    void displayInOrder() const
       {  displayInOrder(root); }
@@ -372,7 +375,46 @@ bool BST<T>::ancestors(BSTNode *nodePtr, T item) const
 
   return false;
 }
-  
+
+template <typename T>
+int BST<T>::getWidth() const
+{
+  return maxWidth(root);
+}
+
+template <typename T>
+int BST<T>:: width(BSTNode *nodePtr, int level) const
+{
+  if(nodePtr == nullptr)
+	return ZERO;
+
+  if(level == ONE)
+	return ONE;
+
+  if(level > ONE)
+	return (width(nodePtr->left, level - ONE) +
+				   width(nodePtr->right, level - ONE));
+  else
+	return ZERO;
+}
+
+template <typename T>
+int BST<T>::maxWidth(BSTNode *nodePtr) const
+{
+  int w;
+  int height;
+  int max = ZERO;
+
+  height = (ONE + getHeight());
+
+  for(int i = ONE; i <= height; i++)
+	{
+	  w = width(nodePtr, i);
+	  if(w > max)
+		max = w;
+	}
+  return max + ONE;
+}
 	
 
 #endif

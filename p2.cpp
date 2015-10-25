@@ -161,6 +161,9 @@ int main()
   //19
   //28
   //32
+
+  cout << "Calling 'getWidth()'" << endl;
+  cout << intBST.getWidth() << endl;
   
   return ZERO;
 }
