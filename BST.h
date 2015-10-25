@@ -413,7 +413,7 @@ int BST<T>::maxWidth(BSTNode *nodePtr) const
 	  if(w > max)
 		max = w;
 	}
-  return max + ONE;
+  return max;
 }
 	
 

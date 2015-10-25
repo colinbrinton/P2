@@ -30,6 +30,7 @@ int main()
   intBST.insertNode(NODE6);
   intBST.insertNode(NODE7);
 
+ 
   //***displayInOrder***
   cout << "Calling 'displayInOrder()'" << endl;
   intBST.displayInOrder();
@@ -164,6 +165,13 @@ int main()
 
   cout << "Calling 'getWidth()'" << endl;
   cout << intBST.getWidth() << endl;
+
+  cout << "Inserting 12 back into tree with insertNode(12)" << endl;
+  intBST.insertNode(NODE6);
+
+  cout << "Calling 'getWidth()'" << endl;
+  cout << intBST.getWidth() << endl;
   
+ 
   return ZERO;
 }
