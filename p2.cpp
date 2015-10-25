@@ -163,6 +163,7 @@ int main()
   //28
   //32
 
+  //**getWidth***
   cout << "Calling 'getWidth()'" << endl;
   cout << intBST.getWidth() << endl;
 
@@ -171,6 +172,11 @@ int main()
 
   cout << "Calling 'getWidth()'" << endl;
   cout << intBST.getWidth() << endl;
+  cout << endl;
+
+  //***displayLevelOrder***
+  cout << "Calling 'displayLevelOrder()'" << endl;
+  intBST.displayLevelOrder();
   
  
   return ZERO;

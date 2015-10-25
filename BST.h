@@ -5,6 +5,7 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
 #include <iostream>
+#include <queue>
 using namespace std;
 
 const int ZERO = 0;
@@ -41,6 +42,7 @@ private:
    bool ancestors(BSTNode *, T) const;
    int width(BSTNode *, int) const;
    int maxWidth(BSTNode *) const;
+   void levelOrder(BSTNode *) const;
    
 public:
    // Constructor
@@ -62,6 +64,7 @@ public:
    bool displayAncestors(T) const;
    bool empty() const;
    int getWidth() const;
+   void displayLevelOrder() const;
    
    void displayInOrder() const
       {  displayInOrder(root); }
@@ -414,6 +417,32 @@ int BST<T>::maxWidth(BSTNode *nodePtr) const
 		max = w;
 	}
   return max;
+}
+
+template <typename T>
+void BST<T>::displayLevelOrder() const
+{
+  levelOrder(root);
+}
+
+template <typename T>
+void BST<T>::levelOrder(BSTNode *nodePtr) const
+{
+  queue<BSTNode*> queue;
+
+  while(nodePtr)
+	{
+	  cout << nodePtr->value << endl;
+
+	  if(nodePtr->left)
+		queue.push(nodePtr->left);
+
+	  if(nodePtr->right)
+		queue.push(nodePtr->right);
+
+	  nodePtr = queue.front();
+	  queue.pop();
+	}
 }
 	
 
