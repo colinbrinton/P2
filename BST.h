@@ -34,6 +34,7 @@ private:
    void displayPostOrder(BSTNode *) const;
    bool isEmpty(BSTNode *) const;
    int nodes(BSTNode *) const;
+   int leafNodes(BSTNode *) const;
    
 public:
    // Constructor
@@ -49,7 +50,7 @@ public:
    bool searchNode(T);
    void remove(T);
    int numNodes() const;
-   int numLeafNodes();
+   int numLeafNodes() const;
    int getHeight();
    int level(T);
    bool displayAncestors(T);
@@ -276,40 +277,29 @@ int BST<T>::numNodes() const
 
 template <typename T>
 int BST<T>::nodes(BSTNode *nodePtr ) const
-{
-  // int count = ZERO;
-  
+{ 
   if (nodePtr == nullptr)
   	return ZERO;
   return (ONE + nodes(nodePtr->left) + nodes(nodePtr->right));
-  /*
-  ++count;
-  while(nodePtr != nullptr)
-	{
-	 nodePtr = nodePtr->left;
-	  ++count;
-	}
-  while(nodePtr != nullptr)
-  {
-	nodePtr = nodePtr->right;
-	++count;
-  }
-
-  return count;
-// if ( nodePtr != nullptr)
-//	{
-//	  nodes(nodePtr->left);
-//	  nodes(nodePtr->right);
-//	  return count + 1;
-//	}
-//return count;*/
-  
 }
 
 template <typename T>
-int BST<T>::numLeafNodes()
+int BST<T>::numLeafNodes() const
 {
-  return ZERO;
+  return leafNodes(root);
+}
+
+template <typename T>
+int BST<T>::leafNodes(BSTNode *nodePtr) const
+{
+  if(nodePtr == nullptr)
+	return ZERO;
+  else
+	{
+	  if(nodePtr->left == nullptr && nodePtr->right == nullptr)
+		return ONE;
+	  return(leafNodes(nodePtr->left) + leafNodes(nodePtr->right));
+	}
 }
 
 template <typename T>
