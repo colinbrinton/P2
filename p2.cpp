@@ -131,6 +131,8 @@ int main()
   cout << intBST.level(19) << endl;
   cout << intBST.level(8) << endl;
 
+  cout << endl;
+
   //(Not currently implemented, test result = 0)
   //3
 
@@ -140,10 +142,8 @@ int main()
   temp = intBST.displayAncestors(NODE6);
 	if (temp) cout << "Node found." << endl;
     else cout << "No node found." << endl;
-  cout << endl;
-
-  //(Not currently implemented, test result = false)
-  //8, 12
+	
+	cout << endl;
 
   //***remove(12)***
   cout << "Calling 'remove(12)'" << endl;

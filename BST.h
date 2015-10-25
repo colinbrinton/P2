@@ -38,6 +38,7 @@ private:
    int leafNodes(BSTNode *) const;
    int height(BSTNode *) const;
    int getLevel(BSTNode *, T, int) const;
+   bool ancestors(BSTNode *, T) const;
    
 public:
    // Constructor
@@ -56,7 +57,7 @@ public:
    int numLeafNodes() const;
    int getHeight() const ;
    int level(T) const ;
-   bool displayAncestors(T);
+   bool displayAncestors(T) const;
    bool empty() const;
    
    void displayInOrder() const
@@ -349,10 +350,29 @@ int BST<T>::getLevel(BSTNode *nodePtr, T item, int level = ZERO) const
 
 
 template <typename T>
-bool BST<T>::displayAncestors(T node)
+bool BST<T>::displayAncestors(T item) const
 {
+  return ancestors(root, item);
+}
+
+template <typename T>
+bool BST<T>::ancestors(BSTNode *nodePtr, T item) const
+{
+  if(nodePtr == nullptr)
+	return false;
+
+  if(nodePtr->value == item)
+	return true;
+
+  if(ancestors(nodePtr->left, item) || ancestors(nodePtr->right, item))
+	{
+	  cout << nodePtr->value << endl;
+	  return true;
+	}
+
   return false;
 }
+  
 	
 
 #endif
