@@ -9,6 +9,7 @@ using namespace std;
 
 const int ZERO = 0;
 const int ONE = 1;
+const int NONE = -1;
 
 // BST template
 template <typename T>
@@ -35,6 +36,8 @@ private:
    bool isEmpty(BSTNode *) const;
    int nodes(BSTNode *) const;
    int leafNodes(BSTNode *) const;
+   int height(BSTNode *) const;
+   int getLevel(BSTNode *, T, int) const;
    
 public:
    // Constructor
@@ -51,8 +54,8 @@ public:
    void remove(T);
    int numNodes() const;
    int numLeafNodes() const;
-   int getHeight();
-   int level(T);
+   int getHeight() const ;
+   int level(T) const ;
    bool displayAncestors(T);
    bool empty() const;
    
@@ -303,16 +306,47 @@ int BST<T>::leafNodes(BSTNode *nodePtr) const
 }
 
 template <typename T>
-int BST<T>::getHeight()
+int BST<T>::getHeight() const
 {
-  return ZERO;
+  return height(root);
 }
 
 template <typename T>
-int BST<T>::level(T)
+int BST<T>::height(BSTNode *nodePtr) const
 {
-  return ZERO;
+  if(nodePtr == nullptr)
+	return ZERO;
+
+  int leftHeight = height(nodePtr->left);
+  int rightHeight = height(nodePtr->right);
+
+  return (leftHeight > rightHeight) ? (leftHeight + ONE) : (rightHeight + ONE);
 }
+
+template <typename T>
+int BST<T>::level(T item) const
+{
+  return getLevel(root, item);
+}
+
+template <typename T>
+int BST<T>::getLevel(BSTNode *nodePtr, T item, int level = ZERO) const
+{
+  if(nodePtr == nullptr)
+	return NONE;
+
+  if(nodePtr->value == item)
+	return level;
+
+  int leftLevel = getLevel(nodePtr->left, item, (level + ONE));
+  int rightLevel = getLevel(nodePtr->right, item, (level + ONE));
+
+  if(leftLevel == NONE)
+	return rightLevel;
+  else
+	return leftLevel;
+}
+
 
 template <typename T>
 bool BST<T>::displayAncestors(T node)

@@ -126,6 +126,10 @@ int main()
   cout << "Calling 'level(12)'" << endl;
   cout << "The level of T is: " << intBST.level(NODE6) << endl;
   cout << endl;
+  cout << intBST.level(15) << endl;
+  cout << intBST.level(28) << endl;
+  cout << intBST.level(19) << endl;
+  cout << intBST.level(8) << endl;
 
   //(Not currently implemented, test result = 0)
   //3
